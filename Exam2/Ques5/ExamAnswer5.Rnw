@@ -1,0 +1,43 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx, verbatim}
+\setlength{\textwidth}{6.5in} 
+\setlength{\textheight}{9in}
+\setlength{\oddsidemargin}{0in} 
+\setlength{\evensidemargin}{0in}
+\setlength{\topmargin}{-1.5cm}
+\usepackage{Sweave}
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+\input{rahul1-concordance}
+
+\title {\textbf{Exam 2 Answer 5}}
+\author{Rahul Sundrani\\
+School of Information technology \\
+Illinois state unversity \\
+\texttt{rsundra@ilstu.edu}}
+
+\maketitle \textbf {}
+<<label=fig1,fig=TRUE,echo=TRUE,results=hide>>=
+
+library(devtools)
+library(ggplot2)
+library(RCurl)
+x <- getURL("https://raw.githubusercontent.com/jrwolf/IT497/master/NYCHealthData.csv")
+y <- read.csv(text = x)
+y
+
+class(y)
+
+y$DBA <- gsub("MC(.*)", "MCD", y$DBA,ignore.case=TRUE)
+
+y$DBA <- gsub("WE(.*)", "WENDYS", y$DBA,ignore.case=TRUE)
+
+ggplot(data=y, aes(x=DBA, fill=CURRENTGRADE)) + geom_bar(stat="bin", position=position_dodge())
+
+@
+Is MCDONALD's cleaner then wendys ?
+It is not clear that MCDonald's is more cleaner than Wendy's because the data given is more for MCdonald,s and also its not compared for a particular location, So it is difficult to compare. However according to me, Wendy's is more cleaner than Mcdonald's because there are just a few low ratings for Wendy's as compared to MCdonald's.
+
+\end{document}

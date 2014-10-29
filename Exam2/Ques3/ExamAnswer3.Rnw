@@ -1,0 +1,46 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx, verbatim}
+\setlength{\textwidth}{6.5in} 
+\setlength{\textheight}{9in}
+\setlength{\oddsidemargin}{0in} 
+\setlength{\evensidemargin}{0in}
+\setlength{\topmargin}{-1.5cm}
+\usepackage{Sweave}
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+\input{rahul1-concordance}
+
+\title {\textbf{Exam 2 Answer 3}}
+\author{Rahul Sundrani\\
+School of Information technology \\
+Illinois state unversity \\
+\texttt{rsundra@ilstu.edu}}
+
+\maketitle \textbf {}
+
+<<label=fig1,fig=TRUE,echo=TRUE>>=
+
+ques3<-source("Question3.R") 
+ques3
+@
+
+
+The graph is showing the steps walked and the miles covered in a particular day.
+
+
+<<label=fig2,fig=TRUE,echo=TRUE>>=
+library(devtools)
+
+df<-source_url("https://dl.dropboxusercontent.com/u/38587679/Question31.R" ) 
+df
+@
+
+
+This is the same graph with inverted axis showing same stats.
+
+
+
+
+\end{document}

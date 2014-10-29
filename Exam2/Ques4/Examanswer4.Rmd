@@ -1,0 +1,39 @@
+Exam 2 Answer 4
+========================================================
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring web pages (click the **Help** toolbar button for more details on using R Markdown).
+
+When you click the **Knit HTML** button a web page will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+library(devtools)
+library(ggplot2)
+
+library(RCurl)
+x4 <- getURL("https://raw.githubusercontent.com/jrwolf/IT497/master/databreaches.csv")
+y4 <- read.csv(text = x4)
+
+
+y4.new <- subset(y4, YEAR > 2007)
+
+count(y4.new$METHOD)
+
+
+y4.new$METHOD <- gsub("hac(.*)", "Hacked", y4.new$METHOD,ignore.case=TRUE)
+
+y4.new$METHOD <- gsub("lost / stolen m(.*)", "lost / stolen media", y4.new$METHOD,ignore.case=TRUE)
+
+ggplot(y4.new, aes(factor(y4.new$YEAR))) +  geom_bar(stat="bin", position= position_dodge()) + xlab("Year") + ylab("Number of Data Breaches") + ggtitle("Number of data Breaches by year ") 
+                                                                               
+```
+#The graph is showing total number of data breaches occured per year.This graph shows that in year 2010 has high number of breaches. However by 2014 these data breaches are reduced.
+
+```{r}
+ggplot(y4.new, aes(x=YEAR, fill=(METHOD))) + geom_bar(position="dodge",binwidth=0.6)
+```
+#Ihe graph is showing diffrent methods of security breach.organization is more compromised by Hacking method in each year.Hacking is the common trend observed in the graph.
+
+
+
+
+

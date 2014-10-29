@@ -1,0 +1,41 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx, verbatim}
+\setlength{\textwidth}{6.5in} 
+\setlength{\textheight}{9in}
+\setlength{\oddsidemargin}{0in} 
+\setlength{\evensidemargin}{0in}
+\setlength{\topmargin}{-1.5cm}
+\usepackage{Sweave}
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+\input{rahul1-concordance}
+
+\title {\textbf{Exam 2 Answer 2}}
+\author{Rahul Sundrani\\
+School of Information technology \\
+Illinois state unversity \\
+\texttt{rsundra@ilstu.edu}}
+
+\maketitle \textbf {}
+
+<<e,results=hide,echo=FALSE>>=
+
+
+library(bitops)
+library(RCurl)
+library(devtools)
+
+Ques22 <- getURL("https://raw.githubusercontent.com/jrwolf/IT497/master/spendingdata.txt")
+Ques2 <- read.table(textConnection(Ques22), sep = ",", header = T, skip = 31, stringsAsFactors = F)
+
+
+
+@
+\textbf {Cash is the most used retail payment instrument.}
+
+By value, cash accounts for a relatively small share of total consumer transaction activity at \Sexpr{Ques2[3,2]} percent, while electronic methods make up \Sexpr{Ques2[3,6]} percent and checks \Sexpr{Ques2[3,3]} percent. These findings suggest that although consumers don \textquotesingle t use electronic methods or checks very often, when they do, it tends to be for much higher-value transactions. In contrast, cash is used quite often, but primarily for low-value transactions. In fact, the average value of a cash transaction is only \\Sexpr{Ques2[2,2]}, compared with \\Sexpr{Ques2[2,3]} for checks and \\Sexpr{Ques2[2,5]} for debit cards.
+
+
+\end{document}
